@@ -98,13 +98,6 @@ function updateStatistics() {
     balls.forEach((ball, index) => {
         // Calculate required statistics
         const currentSpeed = ball.speed.magnitude().toFixed(2); // Requires the magnitude() method from Vector
-        
-        // Build the HTML string for this ball
-// Inside your updateStatistics loop:
-
-// Inside your updateStatistics loop:
-
-// Inside your updateStatistics loop:
 
         const statHTML = `
             <div class="ball-card" style="border-left: 5px solid ${ball.color};">

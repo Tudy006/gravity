@@ -124,3 +124,7 @@ window.updateBallRadius = function(index, value) {
         balls[index].radius = newRadius;
     }
 };
+
+window.toggleField = function() {
+    animator.toggleFieldDisplay();
+};

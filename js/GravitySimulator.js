@@ -56,6 +56,20 @@ class GravitySimulator {
         }
         return forces;
     }
+    computeFieldAtPoint( point ) {
+        let field = new Vector(0, 0);
+        for (let ball of this.balls) {
+            let dr = ball.position.subtract( point );
+            let distanceSquared = dr.magnitudeSquared();
+            if (distanceSquared > 0) {
+                let fieldMagnitude = (this.G * ball.mass) / distanceSquared;
+                let fieldDirection = dr.scale(1 / Math.sqrt(distanceSquared));
+                let fieldContribution = fieldDirection.scale(fieldMagnitude);
+                field = field.add(fieldContribution);
+            }
+        }
+        return field;
+    }
     step( dt ) {
         let forces = this.computeForces();
         for (let i = 0; i < this.balls.length; i++) {

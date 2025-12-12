@@ -10,8 +10,13 @@
 
     <canvas id="myCanvas"></canvas>
     <!-- Let's add some settings menu in the upper-right corner --->
-     
-    <div id="settingsMenu">
+    <div id="settingsMenu" class="collapsed">
+    <button id="toggleSettingsBtn" onclick="toggleSettings()">
+        ⚙️ Settings
+    </button>
+    
+    <div id="settingsContent">
+        
         <h3>Simulation Controls</h3>
         
         <div class="setting-row">
@@ -45,8 +50,9 @@
         <label class="section-label">Active Balls:</label>
         <div id="ballsList">
             </div>
-    </div>
 
+    </div> 
+</div>
     
     <script src="js/Vector.js"></script>
     <script src="js/Ball.js"></script>

@@ -50,10 +50,6 @@ function handleMouseDown(event) {
                 // raw velocity vector
                 const rawVelocity = deltaMove.scale(1 / dt);
 
-                // 3. Apply Low-Pass Filter (Weighted Average)
-                // We blend 80% of the OLD velocity with 20% of the NEW velocity.
-                // This creates "inertia" in the mouse movement.
-                // Formula: smooth = (smooth * 0.8) + (raw * 0.2)
                 throwVelocity = throwVelocity.scale(0.8).add(rawVelocity.scale(0.2));
 
                 // 4. Update Ball Position

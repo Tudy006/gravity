@@ -105,7 +105,7 @@ h1 {
     position: fixed;
     top: 20px;
     left: 20px;
-    width: 280px;
+    width: clamp(250px, 25vw, 350px); /* Responsive width */
     max-height: 90vh; /* Prevent overflowing screen height */
     overflow-y: auto; /* Scroll if list gets long */
     
@@ -334,4 +334,57 @@ button.status-badge:active {
 .name-input:focus {
     background: rgba(0, 0, 0, 0.3);
     border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Style for the Toggle Button */
+#toggleSettingsBtn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #bdc3c7;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+
+#toggleSettingsBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* --- COLLAPSED STATE LOGIC --- */
+
+/* When the menu has the 'collapsed' class... */
+#settingsMenu.collapsed {
+    width: auto;      /* Shrink width */
+    height: auto;     /* Shrink height */
+    overflow: hidden; /* Hide anything sticking out */
+    padding: 10px;    /* Smaller padding */
+    background: rgba(20, 20, 20, 0.6); /* Make it more transparent */
+}
+
+/* ...Hide the content... */
+#settingsMenu.collapsed #settingsContent {
+    display: none;
+}
+
+/* ...And change the button style to look like a small 'Open' button */
+#settingsMenu.collapsed #toggleSettingsBtn {
+    margin-bottom: 0;
+    border: none;
+    background: #3498db; /* Blue color to make it obvious */
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px;
+}
+
+canvas {
+    /* ... existing styles ... */
+    
+    /* This tells the browser: "Don't scroll/zoom when touching this element" */
+    touch-action: none; 
 }

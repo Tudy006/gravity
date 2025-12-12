@@ -128,3 +128,33 @@ window.updateBallRadius = function(index, value) {
 window.toggleField = function() {
     animator.toggleFieldDisplay();
 };
+
+window.toggleSettings = function() {
+    const menu = document.getElementById('settingsMenu');
+    const btn = document.getElementById('toggleSettingsBtn');
+    
+    // Toggle the class
+    menu.classList.toggle('collapsed');
+    
+    // Check if it is now collapsed to update the text
+    if (menu.classList.contains('collapsed')) {
+        btn.textContent = "⚙️ Settings"; // Text when closed
+    } else {
+        btn.textContent = "▼ Hide Controls"; // Text when open
+    }
+};
+
+window.addEventListener('pointerdown', function(event) {
+    // ⭐ THE FIX: Check if the thing we clicked is the CANVAS
+    if (event.target === canvas) {
+        
+        // Only prevent default (stop scrolling/highlighting) on the canvas
+        event.preventDefault(); 
+        
+        // Run your physics logic
+        handleMouseDown(event);
+    }
+    
+    // If we clicked a button, the 'if' is skipped, 
+    // and the button works normally.
+}, { passive: false });

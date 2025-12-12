@@ -7,7 +7,7 @@ class Animator {
         this.dt = dt || 0.1;
         this.speedMultiplier = 1;
         this.accumulatedTime = 0;
-        this.showField = true;
+        this.showField = false;
     }
 
     update() {

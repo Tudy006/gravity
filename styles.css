@@ -388,3 +388,17 @@ canvas {
     /* This tells the browser: "Don't scroll/zoom when touching this element" */
     touch-action: none; 
 }
+
+/* Add css for field display button, make color of button gray */
+
+#showFieldButton {
+    width: clamp(40px, 7vw, 60px);
+    background: rgba(244, 67, 54, 1);
+    color: #7f8c8d; /* Gray text */
+    border: 1px solid rgba(127, 140, 141, 0.5);
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: rgb(256, 256, 256, 0.9 );
+}

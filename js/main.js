@@ -126,6 +126,17 @@ window.updateBallRadius = function(index, value) {
 };
 
 window.toggleField = function() {
+    const button = document.getElementById('showFieldButton');
+    
+    console.log( button.textContent );
+    if (button.textContent === 'OFF' ) {
+        button.textContent = 'ON';
+        button.style.backgroundColor = 'rgba(76, 175, 80, 1)'; // Green
+    } else {
+        button.textContent = 'OFF';
+        button.style.backgroundColor = 'rgba(244, 67, 54, 1)'; // Red
+    }
+    console.log( button.textContent );
     animator.toggleFieldDisplay();
 };
 

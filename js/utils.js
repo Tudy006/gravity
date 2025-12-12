@@ -72,17 +72,17 @@ function handleMouseDown(event) {
                 }
                 ball.speed = throwVelocity.scale(2);
 
-                window.removeEventListener('mousemove', handleMouseMove);
-                window.removeEventListener('mouseup', handleMouseUp);
+                window.removeEventListener('pointermove', handleMouseMove);
+                window.removeEventListener('pointerup', handleMouseUp);
             }
 
-            window.addEventListener('mousemove', handleMouseMove);
-            window.addEventListener('mouseup', handleMouseUp);
+            window.addEventListener('pointermove', handleMouseMove);
+            window.addEventListener('pointerup', handleMouseUp);
             return;
         }
     }
 }
-window.addEventListener('mousedown', handleMouseDown);
+window.addEventListener('pointerdown', handleMouseDown);
 
 function updateStatistics() {
     if (document.activeElement && document.activeElement.tagName === 'INPUT') {

@@ -1,0 +1,337 @@
+body {
+    /* *** THIS IS THE CRUCIAL LINE *** */
+    margin: 0; 
+    
+    /* Ensures nothing else pushes the page content */
+    padding: 0;
+    
+    /* Prevents the scrollbars from appearing, even if there's a 1px overflow */
+    overflow: hidden; 
+}
+
+canvas {
+    /* Ensures the canvas behaves correctly */
+    display: block;
+}
+/* Selects the element with the ID "myCanvas" */
+#myCanvas {
+    /* background-color: black; */
+    background-color: black;
+    /* background-image: url('assets/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; */
+}
+
+/* Selects all h1 elements and changes their color */
+h1 {
+    color: darkred;
+    text-align: center;
+}
+/* Container for the list */
+#ballStatsList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between cards */
+}
+
+/* Individual Ball Card */
+.ball-card {
+    background: rgba(30, 30, 30, 0.85); /* Dark semi-transparent */
+    color: #e0e0e0;
+    padding: 12px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    
+    /* Smooth transition if data changes layout */
+    transition: all 0.2s ease;
+}
+
+/* Header (Name + Badge) */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.ball-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #fff;
+}
+
+/* Badges for Movable Status */
+.status-badge {
+    font-size: 0.8em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.status-badge.free {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+}
+
+.status-badge.locked {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+/* Rows for Data */
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.label {
+    color: #aaa; /* Slightly dimmer text for labels */
+}
+
+.value {
+    font-family: 'Courier New', monospace; /* Monospace for numbers aligns better */
+    font-weight: bold;
+}
+
+/* --- Main Dashboard Container --- */
+#settingsMenu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 280px;
+    max-height: 90vh; /* Prevent overflowing screen height */
+    overflow-y: auto; /* Scroll if list gets long */
+    
+    /* Dark Glass Theme */
+    background: rgba(20, 20, 20, 0.9);
+    backdrop-filter: blur(8px); /* Blurs the canvas behind it */
+    color: #ecf0f1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    
+    padding: 20px;
+    border-radius: 12px;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    z-index: 1000;
+}
+
+/* Headings */
+#settingsMenu h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+    color: #3498db; /* Blue accent color */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Divider Line */
+.divider {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 20px 0;
+}
+
+/* --- Slider Rows --- */
+.setting-row {
+    margin-bottom: 15px;
+}
+
+.setting-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #bdc3c7;
+}
+
+.value-display {
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+/* Custom Range Slider Styling */
+input[type=range] {
+    width: 100%;
+    cursor: pointer;
+    accent-color: #3498db; /* Modern browser support for slider color */
+}
+
+/* --- Energy Card (Special Style) --- */
+.energy-card {
+    background: rgba(241, 196, 15, 0.1); /* Very faint yellow tint */
+    border: 1px solid rgba(241, 196, 15, 0.3);
+    color: #f1c40f; /* Yellow text */
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+}
+
+.section-label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    text-transform: uppercase;
+}
+
+/* Scrollbar Styling (Webkit only - Chrome/Safari) */
+#settingsMenu::-webkit-scrollbar {
+    width: 8px;
+}
+#settingsMenu::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+}
+#settingsMenu::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+}
+
+/* Update the existing .status-badge class to handle buttons */
+button.status-badge {
+    border: none; /* Remove default border */
+    cursor: pointer; /* Show hand cursor */
+    outline: none;
+    transition: transform 0.1s ease, filter 0.2s; /* Add click animation */
+}
+
+/* Hover effect */
+button.status-badge:hover {
+    filter: brightness(1.2); /* Make it slightly brighter */
+    transform: scale(1.05);  /* Grow slightly */
+}
+
+/* Active (click) effect */
+button.status-badge:active {
+    transform: scale(0.95); /* Shrink when pressed */
+}
+
+/* Keep your existing colors */
+.status-badge.free {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+}
+.status-badge.locked {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.mass-input {
+    width: 70px;
+    background: rgba(0, 0, 0, 0.3); /* Dark background */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f1c40f; /* Yellow text to match energy/important data */
+    border-radius: 4px;
+    padding: 2px 5px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-align: right;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.mass-input:focus {
+    border-color: #3498db; /* Blue border when typing */
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Remove up/down spinner arrows in Chrome/Safari/Edge for cleaner look */
+.mass-input::-webkit-outer-spin-button,
+.mass-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Container to group the buttons on the right */
+.card-actions {
+    display: flex;
+    gap: 8px; /* Space between the toggle and delete buttons */
+    align-items: center;
+}
+
+/* The Delete Button Style */
+.btn-delete {
+    background: rgba(231, 76, 60, 0.1);
+    color: #c0392b; /* Dark red text */
+    border: 1px solid rgba(192, 57, 43, 0.5);
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+/* Hover Effect: Turns bright red */
+.btn-delete:hover {
+    background: #c0392b;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(231, 76, 60, 0.6);
+}
+
+/* Active Click Effect */
+.btn-delete:active {
+    transform: scale(0.9);
+}
+.btn-add-planet {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    
+    /* Green Glass Theme */
+    background: rgba(46, 204, 113, 0.15);
+    border: 1px solid rgba(46, 204, 113, 0.5);
+    color: #2ecc71;
+    
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-add-planet:hover {
+    background: rgba(46, 204, 113, 0.3);
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-add-planet:active {
+    transform: translateY(0);
+}
+/* Styling for the Name Input */
+.name-input {
+    background: transparent;
+    border: 1px solid transparent; /* Invisible border normally */
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em; /* Make it look like a header */
+    width: 100px; /* Adjust as needed */
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.2s;
+}
+
+/* When you click to edit, show a border/background */
+.name-input:focus {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}

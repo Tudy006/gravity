@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample HTML Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <canvas id="myCanvas"></canvas>
+    <!-- Let's add some settings menu in the upper-right corner --->
+     
+    <div id="settingsMenu">
+        <h3>Simulation Controls</h3>
+        
+        <div class="setting-row">
+            <div class="setting-header">
+                <label for="gravitySlider">Gravity</label>
+                <span id="gravityValue" class="value-display">1000</span>
+            </div>
+            <input type="range" id="gravitySlider" min="0" max="10000" step="100" value="1000">
+        </div>
+        
+        <div class="setting-row">
+            <div class="setting-header">
+                <label for="simulationSpeedSlider">Sim Speed</label>
+                <span id="simulationSpeedValue" class="value-display">2.71x</span>
+            </div>
+            <input type="range" id="simulationSpeedSlider" min="-40" max="100" step="1" value="10">
+        </div>
+        
+        <hr class="divider">
+
+        <h3>Live Stats</h3>
+        
+        <div id="energyValue" class="energy-card">
+            Loading Energy... 
+        </div>
+
+        <button onclick="addPlanet()" class="btn-add-planet">
+            + Add New Planet
+        </button>
+
+        <label class="section-label">Active Balls:</label>
+        <div id="ballsList">
+            </div>
+    </div>
+
+    
+    <script src="js/Vector.js"></script>
+    <script src="js/Ball.js"></script>
+    <script src="js/GravitySimulator.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/Animator.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>
